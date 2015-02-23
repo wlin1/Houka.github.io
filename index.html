@@ -234,10 +234,10 @@
 				mouseon = true;
 				lastmousex = e.clientX;
 				lastmousey = e.clientY;
-			}
+			};
 			canvas.onmouseout = function(){
 				mouseon = false;
-			}
+			};
 			//*******Touch Events***********//
 		    document.addEventListener("touchstart", touchHandler, true);
 		    document.addEventListener("touchmove", touchHandler, true);
@@ -269,8 +269,6 @@
 			    first.target.dispatchEvent(simulatedEvent);
 			    event.preventDefault();
 			};
-
-
 
 		</script>
 	</body>
