@@ -226,7 +226,7 @@
 			    switch(event.type)
 			    {
 			        case "touchstart": type="mousedown"; mouseclicked = true; break;
-			        case "touchmove":  type="mousemove"; break;        
+			        case "touchmove":  type="mousemove"; mouseclicked = false; break;        
 			        case "touchend":   type="mouseup"; mouseclicked = false; break;      
 			        case "touchcancel":type="mouseup"; break;
 			        default: return;
