@@ -245,13 +245,13 @@
 		    document.addEventListener("touchcancel", touchHandler, true);
 		    function touchStart(event){
 		    	mouseon = true;
-		    	lastmousex = event.touches[0].clientX;
-		    	lastmousey = event.touches[0].clientY;
+		    	lastmousex = event.changedTouches.touches[0].clientX;
+		    	lastmousey = event.changedTouches.touches[0].clientY;
 		    };
 		    function touchMove(event){
     			var rect = canvas.getBoundingClientRect(); 	//to make mouse positions relative to canvas
-    			mousex = event.touches[0].clientX - rect.left; 
-    			mousey = event.touches[0].clientY - rect.top;
+    			mousex = event.changedTouches.touches[0].clientX - rect.left; 
+    			mousey = event.changedTouches.touches[0].clientY - rect.top;
 		    };
 		    function touchEnd(event){
 		    	mouseon = false;
