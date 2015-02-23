@@ -255,7 +255,7 @@
     			// context.fillStyle = "blue";
     			// context.fillRect(mousex,mousey,1,1);
 			};
-			canvas.onmousedown = function(){
+			canvas.onmousedown = function(e){
     			mouseclicks ++;
     			mouseclicked = true;
 
@@ -263,7 +263,7 @@
     			// context.fillStyle = "red";
     			// context.fillRect(mousex,mousey,10,10);    			
 			};
-			canvas.onmouseup = function(){
+			canvas.onmouseup = function(e){
 				mouseclicked = false;
 
     			//testing
