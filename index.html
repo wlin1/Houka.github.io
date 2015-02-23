@@ -69,14 +69,17 @@
 				
 				
     			//drawing
-    			if (mouseclicked){
+    			if (mouseclicked && mouseon){
+    				
     				context.beginPath();
 	    			context.strokeStyle = color;
 	    			context.moveTo(mousex, mousey);
 	    			if (lastmousey != 0 && lastmousex != 0)
 	    				context.lineTo(lastmousex, lastmousey);
 	    			context.stroke();
-	    			//context.fillRect(mousex,mousey,1,1);
+	    			
+	    			context.fillStyle = color;
+	    			context.fillRect(mousex,mousey,1,1);
 	    		}    	
 
 	    		//how to load an image from url
@@ -205,6 +208,43 @@
 
 			    return false;				
 			};*/
+			//*******Touch Events***********//
+		    document.addEventListener("touchstart", touchHandler, true);
+		    document.addEventListener("touchmove", touchHandler, true);
+		    document.addEventListener("touchend", touchHandler, true);
+		    document.addEventListener("touchcancel", touchHandler, true);   
+		    function touchHandler(event)
+			{
+
+				//Ignore any mapping if more than 1 fingers touching
+				if(event.changedTouches.length>1){return;}
+
+			    var touches = event.changedTouches,
+			        first = touches[0],
+			        type = "";
+			    
+			    switch(event.type)
+			    {
+			        case "touchstart": type="mousedown"; break;
+			        case "touchmove":  type="mousemove"; break;        
+			        case "touchend":   type="mouseup"; break;      
+			        case "touchcancel":type="mouseup"; break;
+			        default: return;
+			    }
+
+			             //initMouseEvent(type, canBubble, cancelable, view, clickCount, 
+			    //           screenX, screenY, clientX, clientY, ctrlKey, 
+			    //           altKey, shiftKey, metaKey, button, relatedTarget);
+
+			    var simulatedEvent = document.createEvent("MouseEvent");
+			    simulatedEvent.initMouseEvent(type, true, true, window, 1, 
+			                              first.screenX, first.screenY, 
+			                              first.clientX, first.clientY, false, 
+			                              false, false, false, 0/*left*/, null);
+
+			    first.target.dispatchEvent(simulatedEvent);
+			    event.preventDefault();
+			};
 			//*****Mouse Events************//
 			canvas.onmousemove = function(e){
     			var rect = canvas.getBoundingClientRect(); 	//to make mouse positions relative to canvas
@@ -237,38 +277,6 @@
 			};
 			canvas.onmouseout = function(){
 				mouseon = false;
-			};
-			//*******Touch Events***********//
-		    document.addEventListener("touchstart", touchHandler, true);
-		    document.addEventListener("touchmove", touchHandler, true);
-		    document.addEventListener("touchend", touchHandler, true);
-		    document.addEventListener("touchcancel", touchHandler, true);   
-		    function touchHandler(event)
-			{
-			    var touches = event.changedTouches,
-			        first = touches[0],
-			        type = "";
-			         switch(event.type)
-			    {
-			        case "touchstart": type="mousedown"; break;
-			        case "touchmove":  type="mousemove"; break;        
-			        case "touchend":   type="mouseup"; break;      
-			        case "touchcancel":type="mouseup"; break;
-			        default: return;
-			    }
-
-			             //initMouseEvent(type, canBubble, cancelable, view, clickCount, 
-			    //           screenX, screenY, clientX, clientY, ctrlKey, 
-			    //           altKey, shiftKey, metaKey, button, relatedTarget);
-
-			    var simulatedEvent = document.createEvent("MouseEvent");
-			    simulatedEvent.initMouseEvent(type, true, true, window, 1, 
-			                              first.screenX, first.screenY, 
-			                              first.clientX, first.clientY, false, 
-			                              false, false, false, 0/*left*/, null);
-
-			    first.target.dispatchEvent(simulatedEvent);
-			    event.preventDefault();
 			};
 
 		</script>
