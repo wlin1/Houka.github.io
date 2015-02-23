@@ -113,7 +113,7 @@
 				
 				//updating lasst mouse positions
 	    		lastmousey = mousey;
-	    		lastmousex =mousex;
+	    		lastmousex = mousex;
 
 
 				//repeat or loop
@@ -225,9 +225,9 @@
 			    
 			    switch(event.type)
 			    {
-			        case "touchstart": type="mousedown"; break;
+			        case "touchstart": type="mousedown"; mouseclicked = true; break;
 			        case "touchmove":  type="mousemove"; break;        
-			        case "touchend":   type="mouseup"; break;      
+			        case "touchend":   type="mouseup"; mouseclicked = false; break;      
 			        case "touchcancel":type="mouseup"; break;
 			        default: return;
 			    }
@@ -275,7 +275,7 @@
 				lastmousex = e.clientX;
 				lastmousey = e.clientY;
 			};
-			canvas.onmouseout = function(){
+			canvas.onmouseout = function(e){
 				mouseon = false;
 			};
 
