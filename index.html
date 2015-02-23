@@ -209,10 +209,10 @@
 			    return false;				
 			};*/
 			//*******Touch Events***********//
-		    document.addEventListener("touchstart", touchHandler, true);
-		    document.addEventListener("touchmove", touchHandler, true);
-		    document.addEventListener("touchend", touchHandler, true);
-		    document.addEventListener("touchcancel", touchHandler, true);   
+		    canvas.addEventListener("touchstart", touchHandler, true);
+		    canvas.addEventListener("touchmove", touchHandler, true);
+		    canvas.addEventListener("touchend", touchHandler, true);
+		    canvas.addEventListener("touchcancel", touchHandler, true);   
 		    function touchHandler(event)
 			{
 
@@ -226,7 +226,7 @@
 			    switch(event.type)
 			    {
 			        case "touchstart": type="mousedown"; mouseclicked = true; break;
-			        case "touchmove":  type="mousemove"; mouseclicked = false; break;        
+			        case "touchmove":  type="mousemove"; break;        
 			        case "touchend":   type="mouseup"; mouseclicked = false; break;      
 			        case "touchcancel":type="mouseup"; break;
 			        default: return;
