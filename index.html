@@ -37,8 +37,8 @@
 			var buttonGreen = {x:buttonX+=45,y:5,width:40,height:40,color:"green"};
 			var colorButtons = [buttonBlack, buttonRed, buttonBlue, buttonGreen];
 			//initalize canvas window width to be starting window width
-			canvas.width = window.innerWidth - 15;
-			canvas.height = window.innerHeight - 15;
+			canvas.width = window.innerWidth - 20;
+			canvas.height = window.innerHeight - 20;
 			
 			//draw 
 			function draw(){
@@ -78,6 +78,11 @@
 	    			context.stroke();
 	    			//context.fillRect(mousex,mousey,1,1);
 	    		}    	
+
+	    		//how to load an image from url
+	    		//var img = new Image();
+	    		//img.src = "images/test.png";
+	    		//context.drawImage(img, 0,0,100,50);
 			};
 			
 			//menu
@@ -233,6 +238,38 @@
 			canvas.onmouseout = function(){
 				mouseon = false;
 			}
+			//*******Touch Events***********//
+		    document.addEventListener("touchstart", touchHandler, true);
+		    document.addEventListener("touchmove", touchHandler, true);
+		    document.addEventListener("touchend", touchHandler, true);
+		    document.addEventListener("touchcancel", touchHandler, true);   
+		    function touchHandler(event)
+			{
+			    var touches = event.changedTouches,
+			        first = touches[0],
+			        type = "";
+			         switch(event.type)
+			    {
+			        case "touchstart": type = "mousedown"; break;
+			        case "touchmove":  type="mousemove"; break;        
+			        case "touchend":   type="mouseup"; break;
+			        default: return;
+			    }
+
+			             //initMouseEvent(type, canBubble, cancelable, view, clickCount, 
+			    //           screenX, screenY, clientX, clientY, ctrlKey, 
+			    //           altKey, shiftKey, metaKey, button, relatedTarget);
+
+			    var simulatedEvent = document.createEvent("MouseEvent");
+			    simulatedEvent.initMouseEvent(type, true, true, window, 1, 
+			                              first.screenX, first.screenY, 
+			                              first.clientX, first.clientY, false, 
+			                              false, false, false, 0/*left*/, null);
+
+			                                                                                 first.target.dispatchEvent(simulatedEvent);
+			    event.preventDefault();
+			};
+
 
 
 		</script>
