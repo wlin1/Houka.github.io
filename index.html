@@ -252,10 +252,10 @@
     			var rect = canvas.getBoundingClientRect(); 	//to make mouse positions relative to canvas
     			mousex = event.touches[0].clientX - rect.left; 
     			mousey = event.touches[0].clientY - rect.top;
-		    }
+		    };
 		    function touchEnd(event){
 		    	mouseon = false;
-		    }
+		    };
 		    function touchHandler(event)
 			{
 			    var touches = event.changedTouches,
