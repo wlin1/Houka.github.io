@@ -239,23 +239,10 @@
 				mouseon = false;
 			}
 			//*******Touch Events***********//
-		    document.addEventListener("touchstart", touchStart, true);
-		    document.addEventListener("touchmove", touchMove, true);
-		    document.addEventListener("touchend", touchEnd, true);
+		    document.addEventListener("touchstart", touchHandler, true);
+		    document.addEventListener("touchmove", touchHandler, true);
+		    document.addEventListener("touchend", touchHandler, true);
 		    document.addEventListener("touchcancel", touchHandler, true);
-		    function touchStart(event){
-		    	mouseon = true;
-		    	lastmousex = event.changedTouches.touches[0].clientX;
-		    	lastmousey = event.changedTouches.touches[0].clientY;
-		    };
-		    function touchMove(event){
-    			var rect = canvas.getBoundingClientRect(); 	//to make mouse positions relative to canvas
-    			mousex = event.changedTouches.touches[0].clientX - rect.left; 
-    			mousey = event.changedTouches.touches[0].clientY - rect.top;
-		    };
-		    function touchEnd(event){
-		    	mouseon = false;
-		    };
 		    function touchHandler(event)
 			{
 			    var touches = event.changedTouches,
