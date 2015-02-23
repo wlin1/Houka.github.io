@@ -239,10 +239,23 @@
 				mouseon = false;
 			}
 			//*******Touch Events***********//
-		    document.addEventListener("touchstart", touchHandler, true);
-		    document.addEventListener("touchmove", touchHandler, true);
-		    document.addEventListener("touchend", touchHandler, true);
-		    document.addEventListener("touchcancel", touchHandler, true);   
+		    document.addEventListener("touchstart", touchStart, true);
+		    document.addEventListener("touchmove", touchMove, true);
+		    document.addEventListener("touchend", touchEnd, true);
+		    document.addEventListener("touchcancel", touchHandler, true);
+		    function touchStart(event){
+		    	mouseon = true;
+		    	lastmousex = event.touches[0].clientX;
+		    	lastmousey = event.touches[0].clientY;
+		    };
+		    function touchMove(event){
+    			var rect = canvas.getBoundingClientRect(); 	//to make mouse positions relative to canvas
+    			mousex = event.touches[0].clientX - rect.left; 
+    			mousey = event.touches[0].clientY - rect.top;
+		    }
+		    function touchEnd(event){
+		    	mouseon = false;
+		    }
 		    function touchHandler(event)
 			{
 			    var touches = event.changedTouches,
@@ -250,8 +263,8 @@
 			        type = "";
 			         switch(event.type)
 			    {
-			        case "touchstart": type = "mousedown"; break;
-			        case "touchmove":  type="mousemove"; break;        
+			        case "touchstart": type="mousedown"; break;
+			        case "touchmove":  type="mousemove"; break;
 			        case "touchend":   type="mouseup"; break;
 			        default: return;
 			    }
@@ -266,7 +279,7 @@
 			                              first.clientX, first.clientY, false, 
 			                              false, false, false, 0/*left*/, null);
 
-			                                                                                 first.target.dispatchEvent(simulatedEvent);
+			    first.target.dispatchEvent(simulatedEvent);
 			    event.preventDefault();
 			};
 
