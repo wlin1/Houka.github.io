@@ -242,7 +242,7 @@
 		    document.addEventListener("touchstart", touchHandler, true);
 		    document.addEventListener("touchmove", touchHandler, true);
 		    document.addEventListener("touchend", touchHandler, true);
-		    document.addEventListener("touchcancel", touchHandler, true);
+		    document.addEventListener("touchcancel", touchHandler, true);   
 		    function touchHandler(event)
 			{
 			    var touches = event.changedTouches,
@@ -251,7 +251,7 @@
 			         switch(event.type)
 			    {
 			        case "touchstart": type="mousedown"; break;
-			        case "touchmove":  type="mousemove"; break;
+			        case "touchmove":  type="mousemove"; break;        
 			        case "touchend":   type="mouseup"; break;
 			        default: return;
 			    }

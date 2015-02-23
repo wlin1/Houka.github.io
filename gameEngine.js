@@ -24,6 +24,6 @@ function GameObj(w, h, context){
 
 	};
 	//helper functions
-	this.
+	
 
 };
