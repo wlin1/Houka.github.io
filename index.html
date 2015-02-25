@@ -112,9 +112,13 @@
 				draw();
 				
 				//updating lasst mouse positions
-	    		lastmousey = mousey;
-	    		lastmousex = mousex;
-
+				if (lastmousey == mousey && lastmousex == mousex){
+					lastmousey = 0;
+					lastmousex = 0;
+				}else{
+		    		lastmousey = mousey;
+		    		lastmousex = mousex;
+		    	}
 
 				//repeat or loop
 				timer = setTimeout(update, delay);
